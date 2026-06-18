@@ -22,7 +22,7 @@ const menuItems = [
   { path: '/agents/qualify', label: 'Qualification', icon: '✅', group: 'core' },
   { path: '/agents/book', label: 'Appointments', icon: '📅', group: 'core' },
   
-  // Extended Agents (7)
+  // Extended Agents (10)
   { path: '/agents/proposal', label: 'Proposal Builder', icon: '📄', group: 'extended' },
   { path: '/agents/content', label: 'Content Writer', icon: '✍️', group: 'extended' },
   { path: '/agents/competitor', label: 'Competitor Analyzer', icon: '🔍', group: 'extended' },
@@ -30,8 +30,17 @@ const menuItems = [
   { path: '/agents/social', label: 'Social Scheduler', icon: '📱', group: 'extended' },
   { path: '/agents/reviews', label: 'Review Manager', icon: '⭐', group: 'extended' },
   { path: '/agents/referral', label: 'Referral Generator', icon: '🔗', group: 'extended' },
-  { path: '/agents/voice', label: 'Voice Commands', icon: '🎙️', group: 'extended' },
+  { path: '/agents/invoice', label: 'Invoice Generator', icon: '🧾', group: 'extended' },
+  { path: '/agents/templates', label: 'Email Templates', icon: '📧', group: 'extended' },
+  { path: '/agents/onboarding', label: 'Onboarding', icon: '🚀', group: 'extended' },
+  { path: '/agents/coldemail', label: 'Cold Email', icon: '📧', group: 'extended' },
+{ path: '/agents/landing', label: 'Landing Page', icon: '🌐', group: 'extended' },
+{ path: '/agents/portal', label: 'Client Portal', icon: '👥', group: 'extended' },
 
+  // Special Agents (3)
+  { path: '/agents/abtest', label: 'A/B Test Analyzer', icon: '🧪', group: 'special' },
+  { path: '/agents/meetings', label: 'Meeting Notes', icon: '📝', group: 'special' },
+  { path: '/agents/voice', label: 'Voice Commands', icon: '🎙️', group: 'special' },
 ];
 
 export default function Sidebar({ isOpen, setIsOpen }) {
@@ -48,7 +57,8 @@ export default function Sidebar({ isOpen, setIsOpen }) {
   const mainItems = menuItems.filter(i => i.group === 'main');
   const coreItems = menuItems.filter(i => i.group === 'core');
   const extendedItems = menuItems.filter(i => i.group === 'extended');
-  const totalAgents = coreItems.length + extendedItems.length;
+  const specialItems = menuItems.filter(i => i.group === 'special');
+  const totalAgents = coreItems.length + extendedItems.length + specialItems.length;
 
   const NavLink = ({ item, color = 'blue' }) => {
     const isActive = location.pathname === item.path;
@@ -69,7 +79,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         
         <div className="flex items-center h-[65px] px-5 border-b border-gray-100 flex-shrink-0 gap-3">
           <Link to="/" className="w-9 h-9 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-md shadow-blue-200 flex-shrink-0"><span className="text-white font-bold text-sm">AI</span></Link>
-          {isOpen && <div className="flex-1 min-w-0"><h2 className="font-bold text-gray-900 text-[15px]">LeadGen AI</h2><p className="text-[10px] text-gray-400">Automation v2.0</p></div>}
+          {isOpen && <div className="flex-1 min-w-0"><h2 className="font-bold text-gray-900 text-[15px]">LeadGen AI</h2><p className="text-[10px] text-gray-400">Automation v3.0</p></div>}
           <button onClick={() => setIsOpen(!isOpen)} className="p-1.5 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600 flex-shrink-0">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={`transition-transform duration-300 ${!isOpen ? 'rotate-180' : ''}`}><polyline points="15 18 9 12 15 6" /></svg>
           </button>
@@ -97,6 +107,10 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           <div>
             {isOpen && <p className="px-3 mb-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Extended Agents ({extendedItems.length})</p>}
             {extendedItems.map(item => <NavLink key={item.path} item={item} color="green" />)}
+          </div>
+          <div>
+            {isOpen && <p className="px-3 mb-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Special ({specialItems.length})</p>}
+            {specialItems.map(item => <NavLink key={item.path} item={item} color="orange" />)}
           </div>
         </nav>
 

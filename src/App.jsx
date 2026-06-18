@@ -6,7 +6,7 @@ import Header from './common/Header';
 import Sidebar from './common/Sidebar';
 import VoiceAssistant from './components/VoiceAssistant';
 
-// Main Components
+// Main Components (6)
 import Dashboard from './components/Dashboard';
 import PipelineView from './components/PipelineView';
 import Analytics from './components/Analytics';
@@ -24,7 +24,7 @@ import FollowUpAgent from './agents/FollowUpAgent';
 import QualificationAgent from './agents/QualificationAgent';
 import AppointmentSetter from './agents/AppointmentSetter';
 
-// Extended Agents (7)
+// Extended Agents (13)
 import ProposalBuilder from './agents/ProposalBuilder';
 import ContentWriter from './agents/ContentWriter';
 import CompetitorAnalyzer from './agents/CompetitorAnalyzer';
@@ -32,11 +32,19 @@ import ROICalculator from './agents/ROICalculator';
 import SocialScheduler from './agents/SocialScheduler';
 import ReviewManager from './agents/ReviewManager';
 import ReferralGenerator from './agents/ReferralGenerator';
+import InvoiceGenerator from './agents/InvoiceGenerator';
+import EmailTemplateBuilder from './agents/EmailTemplateBuilder';
+import OnboardingAgent from './agents/OnboardingAgent';
+import ABTestAnalyzer from './agents/ABTestAnalyzer';
+import MeetingNotes from './agents/MeetingNotes';
+import ColdEmailAgent from './agents/ColdEmailAgent';
+import LandingPageBuilder from './agents/LandingPageBuilder';
+import ClientPortal from './agents/ClientPortal';
 
-// Special Agents
+// Special Agents (1)
 import VoiceCommandAgent from './agents/VoiceCommandAgent';
 
-// Public Pages
+// Public Pages (3)
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Pricing from './pages/Pricing';
@@ -68,35 +76,22 @@ function AppLayout({ children }) {
     </div>
   );
 }
-
-
 function PublicLayout({ children }) {
   return <div className="min-h-screen bg-gray-50">{children}</div>;
 }
 
 // ============ ROUTES ============
 const routes = [
-  // Public (3)
   { path: '/login', element: <Login />, layout: 'public' },
   { path: '/register', element: <Register />, layout: 'public' },
   { path: '/pricing', element: <Pricing />, layout: 'public' },
-
-  // Dashboard (1)
   { path: '/', element: <Dashboard />, layout: 'app', guard: 'auth' },
-
-  // Admin (2)
   { path: '/admin', element: <AdminDashboard />, layout: 'app', guard: 'admin' },
   { path: '/admin/email-config', element: <EmailConfig />, layout: 'app', guard: 'admin' },
-
-  // Pipeline & Analytics (3)
   { path: '/pipeline', element: <PipelineView />, layout: 'app', guard: 'auth' },
   { path: '/analytics', element: <Analytics />, layout: 'app', guard: 'auth' },
   { path: '/settings', element: <Settings />, layout: 'app', guard: 'auth' },
-
-  // Lead Detail (1)
   { path: '/lead/:id', element: <LeadDetail />, layout: 'app', guard: 'auth' },
-
-  // Core Agents (7)
   { path: '/agents/find', element: <LeadFinder />, layout: 'app', guard: 'auth' },
   { path: '/agents/analyze', element: <WebsiteAnalyzer />, layout: 'app', guard: 'auth' },
   { path: '/agents/offer', element: <OfferGenerator />, layout: 'app', guard: 'auth' },
@@ -104,8 +99,6 @@ const routes = [
   { path: '/agents/followup', element: <FollowUpAgent />, layout: 'app', guard: 'auth' },
   { path: '/agents/qualify', element: <QualificationAgent />, layout: 'app', guard: 'auth' },
   { path: '/agents/book', element: <AppointmentSetter />, layout: 'app', guard: 'auth' },
-
-  // Extended Agents (7)
   { path: '/agents/proposal', element: <ProposalBuilder />, layout: 'app', guard: 'auth' },
   { path: '/agents/content', element: <ContentWriter />, layout: 'app', guard: 'auth' },
   { path: '/agents/competitor', element: <CompetitorAnalyzer />, layout: 'app', guard: 'auth' },
@@ -113,8 +106,14 @@ const routes = [
   { path: '/agents/social', element: <SocialScheduler />, layout: 'app', guard: 'auth' },
   { path: '/agents/reviews', element: <ReviewManager />, layout: 'app', guard: 'auth' },
   { path: '/agents/referral', element: <ReferralGenerator />, layout: 'app', guard: 'auth' },
-
-  // Special Agents (1)
+  { path: '/agents/invoice', element: <InvoiceGenerator />, layout: 'app', guard: 'auth' },
+  { path: '/agents/templates', element: <EmailTemplateBuilder />, layout: 'app', guard: 'auth' },
+  { path: '/agents/onboarding', element: <OnboardingAgent />, layout: 'app', guard: 'auth' },
+  { path: '/agents/abtest', element: <ABTestAnalyzer />, layout: 'app', guard: 'auth' },
+  { path: '/agents/meetings', element: <MeetingNotes />, layout: 'app', guard: 'auth' },
+  { path: '/agents/coldemail', element: <ColdEmailAgent />, layout: 'app', guard: 'auth' },
+  { path: '/agents/landing', element: <LandingPageBuilder />, layout: 'app', guard: 'auth' },
+  { path: '/agents/portal', element: <ClientPortal />, layout: 'app', guard: 'auth' },
   { path: '/agents/voice', element: <VoiceCommandAgent />, layout: 'app', guard: 'auth' },
 ];
 
